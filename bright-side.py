@@ -1,6 +1,10 @@
 from brightOps import brightOps
 import argparse
 import sys
+from subprocess import call
+
+def cleanup():
+    call("del", "end*.txt")
 
 def main(args):
     print "Starting..."
@@ -11,12 +15,14 @@ def main(args):
     parser.add_argument("Subsystem", help="Endevor Subsystem Name" , type=str)
     parser.add_argument("-c", "--ccid", help="CCID to search for", type=str)
     parser.add_argument("-p", "--package", help="Package Name", type=str)
-
+    parser.add_argument("-d", "--debug",  help="Debugging Information", type=int)
     args = parser.parse_args()
 
     bright = brightOps(args.Instance, args.Environment, args.System, args.Subsystem)
 
-    bright.get_all_files()
+    bright.get_files_by_ccid(args.ccid)
+
+    #cleanup()
 
 
 if __name__ == '__main__':
