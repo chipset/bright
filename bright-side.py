@@ -14,13 +14,23 @@ def main(args):
     parser.add_argument("System", help="Endevor System Name", type=str)
     parser.add_argument("Subsystem", help="Endevor Subsystem Name" , type=str)
     parser.add_argument("-c", "--ccid", help="CCID to search for", type=str)
-    parser.add_argument("-p", "--package", help="Package Name", type=str)
+    #parser.add_argument("-p", "--package", help="Package Name", type=str)
     parser.add_argument("-d", "--debug",  help="Debugging Information", type=int)
+    parser.add_argument("-a", "--all", help="Gets all files based upon Env, Sys and Sub search", dest='all', default=False, action='store_true')
     args = parser.parse_args()
+
+
 
     bright = brightOps(args.Instance, args.Environment, args.System, args.Subsystem)
 
-    bright.get_files_by_ccid(args.ccid)
+    
+    if(args.all):
+        print "Getting all files"
+        bright.get_all_files()
+    else:
+        print "getting files by ccid"
+        bright.get_files_by_ccid(args.ccid)
+
 
     #cleanup()
 
