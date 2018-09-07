@@ -29,7 +29,7 @@ def main(args):
 
 
 
-    bright = brightOps(args.Instance, args.Environment, args.System, args.Subsystem)
+    bright = brightOps(args.Instance, args.Environment, args.System, args.Subsystem, args.debug)
 
     if(args.componentlist):
         print "Processing Component List"

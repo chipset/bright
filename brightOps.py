@@ -5,11 +5,16 @@ import os
 import re
 
 class brightOps:
-    def __init__(self, instance, environment, system, subsystem):
+    def __init__(self, instance, environment, system, subsystem, debug):
         self.instance = instance
         self.environment = environment
         self.system = system
         self.subsystem = subsystem
+        self.debug = debug
+    
+    def debug(self, msg):
+        if self.debug == True:
+            print msg
     
     def getComponentTree(self, element):
         self.get_files_by_details(element)
@@ -17,7 +22,7 @@ class brightOps:
         elements = self.getInputComponentList(element)
         elementList = self.getElementList(elements)
         for components in elementList:
-            print "Component Print"
+            #self.debug("Component Print")
             num, member, vvll, date, time, system, subsystem, element, element_type, stg, ste, environment = components
             print member, system, subsystem, element, element_type, stg, environment
             self.get_files_by_details(components)
@@ -33,11 +38,11 @@ class brightOps:
         failureCheck = "finished with 0004 *NOTFND*"
         for i in reversed(lines):
                 if successCheck in i:
-                    print "Success!"
+                    #self.debug("Success!")
                     return lines
         for i in reversed(lines):
                 if failureCheck in i:
-                    print "found failure"
+                    #self.debug("found failure")
                     return
         print lines
         return lines
@@ -64,7 +69,7 @@ class brightOps:
         num, member, vvll, date, time, system, subsystem, element, element_type, stg, ste, environment = details
         command = "bright.cmd endevor ret ele {} --typ {} --env {} --sys {} --sub {} --sn {} -i WEBSALC --comment BrightDownload --ccid TEST --tf {} --sm".format(element, element_type, environment,
         system, subsystem, stg, "{}.{}".format(element, element_type))
-        print "Trying Command {}".format(command)
+        #print "Trying Command {}".format(command)
         try:
             out = subprocess.check_output(command.split())
         except Exception, details:
@@ -76,10 +81,10 @@ class brightOps:
     def get_files_by_ccid(self, ccid):
         out = subprocess.check_output(['bright.cmd', 'endevor', 'list', 'elements', '-i', self.instance, '--sm', '--fo', '--env', self.environment, '--sys', self.system, '--sub', self.subsystem, '--rft', 'string'])
         jObj = json.loads(out)
-        print "Download These Files"
+        #self.debug("Download These Files")
         for i in jObj:
             if i['lastActCcid'] == ccid:
-                print i["elmName"], i["typeName"], i['stgNum']
+                #print i["elmName"], i["typeName"], i['stgNum']
                 tofile = "" + i["elmName"] + "." + i["typeName"]
                 try: 
                     get_files = subprocess.check_output(['bright.cmd', 'endevor', 'ret', 'ele', i["elmName"], "--typ", i["typeName"], "--env", self.environment, "--sys", self.system, "--sub",
@@ -95,7 +100,7 @@ class brightOps:
         out = subprocess.check_output(['bright.cmd', 'endevor', 'list', 'elements', '-i', self.instance, '--sm', '--fo', '--env', self.environment, '--sys', self.system, '--sub', self.subsystem, '--rft', 'string'])
         endevor_file_list = json.loads(out)
         for file in endevor_file_list:
-            print file["elmName"], file["typeName"], file['stgNum']
+            #print file["elmName"], file["typeName"], file['stgNum']
             tofile = "" + file["elmName"] + "." + file["typeName"]
             try:
                 get_files = subprocess.check_output(['bright.cmd', 'endevor', 'ret', 'ele', file["elmName"], "--typ", file["typeName"], "--env", self.environment, "--sys", self.system, "--sub",
@@ -108,7 +113,7 @@ class brightOps:
         self.clean_up_mess()
 
     def clean_up_mess(self):
-        print "Cleaning up"
+        #print "Cleaning up"
         dir = ".\\"
         pattern = "end.*.txt"
         for f in os.listdir(dir):
