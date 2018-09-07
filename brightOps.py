@@ -30,8 +30,8 @@ class brightOps:
             self.clean_up_mess()   
 
     def getInputComponentList(self, element):
-        num, member, vvll, date, time, system, subsystem, element, elementType, stg, ste, environment = element
-        cmdLine = "bright.cmd endevor print comp MCQTH01 --env {} --sys {} --sub {} --typ {} -i WEBSALC --sn {}".format(environment, system, subsystem, elementType, stg)
+        num, member, vvll, date, time, system, subsystem, elementName, elementType, stg, ste, environment = element
+        cmdLine = "bright.cmd endevor print comp {} --env {} --sys {} --sub {} --typ {} -i {} --sn {}".format(elementName, environment, system, subsystem, elementType, self.instance, stg)
         output = subprocess.check_output(cmdLine.split())
         lines = output.split("\n")
         successCheck = "finished with 0000"
@@ -44,7 +44,7 @@ class brightOps:
                 if failureCheck in i:
                     #self.debug("found failure")
                     return
-        print lines
+        #print lines
         return lines
 
 
