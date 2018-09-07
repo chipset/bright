@@ -10,6 +10,19 @@ class brightOps:
         self.environment = environment
         self.system = system
         self.subsystem = subsystem
+    
+    def getComponentTree(self, element):
+        self.get_files_by_details(element)
+        print "Pocessing Component Tree"
+        elements = self.getInputComponentList(element)
+        elementList = self.getElementList(elements)
+        for components in elementList:
+            print "Component Print"
+            num, member, vvll, date, time, system, subsystem, element, element_type, stg, ste, environment = components
+            print member, system, subsystem, element, element_type, stg, environment
+            self.get_files_by_details(components)
+            self.getInputComponentList(components)     
+            self.clean_up_mess()   
 
     def getInputComponentList(self, element):
         num, member, vvll, date, time, system, subsystem, element, elementType, stg, ste, environment = element

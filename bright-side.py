@@ -32,18 +32,10 @@ def main(args):
     bright = brightOps(args.Instance, args.Environment, args.System, args.Subsystem)
 
     if(args.componentlist):
+        print "Processing Component List"
+
         element = ["", args.element, "", "", args.Environment, args.System, args.Subsystem, args.element, args.elementType, args.stageNumber, "", args.Environment]
-        print element
-        elements = bright.getInputComponentList(element)
-        elementList = bright.getElementList(elements)
-        for components in elementList:
-            print "Component Print"
-            print components
-            num, member, vvll, date, time, system, subsystem, element, element_type, stg, ste, environment = components
-            print member, system, subsystem, element, element_type, stg, environment
-            bright = brightOps("", "", "", "")
-            bright.get_files_by_details(components)
-            bright.getInputComponentList(components)        
+        bright.getComponentTree(element)
     elif(args.all):
         print "Getting all files"
         bright.get_all_files()
