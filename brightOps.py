@@ -24,7 +24,7 @@ class brightOps:
         for components in elementList:
             #self.debug("Component Print")
             num, member, vvll, date, time, system, subsystem, element, element_type, stg, ste, environment = components
-            print member, system, subsystem, element, element_type, stg, environment
+            #print member, system, subsystem, element, element_type, stg, environment
             self.get_files_by_details(components)
             self.getInputComponentList(components)     
             self.clean_up_mess()   
