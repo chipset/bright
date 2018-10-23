@@ -1,4 +1,4 @@
-# Bright Python Wrappers
+# CA Brightside Python Wrappers
 These are files provide additional functionality to [CA Brightside](https://www.ca.com/brightside "CA Brightside") specifically for CA Endevor profiles.
 
 The scripts are written using Python 2.5+.  
