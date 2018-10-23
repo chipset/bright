@@ -5,6 +5,7 @@ pipeline {
             steps {
                 // Calls Python from windows build tools directory and searches based upon CCID.
                 // Downloads files matching criteria
+                // Assumes ENVIRONMENT, SYSTEM, SUBSYSTEM are Jenkins parameters and set as type String.
                 sh "C:/Users/mcqth01/.windows-build-tools/python27/python.exe c:/bright-code/bright-side.py WEBSALC ${params.ENVIRONMENT} ${params.SYSTEM} ${params.SUBSYSTEM} -c ${params.CCID}"
             }
         }
