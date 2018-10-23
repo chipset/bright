@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    stages {
+        stage('Download Code') {
+            steps {
+                // Calls Python from windows build tools directory and searches based upon CCID.
+                // Downloads files matching criteria
+                sh "C:/Users/mcqth01/.windows-build-tools/python27/python.exe c:/bright-code/bright-side.py WEBSALC ${params.ENVIRONMENT} ${params.SYSTEM} ${params.SUBSYSTEM} -c ${params.CCID}"
+            }
+        }
+        stage('SonarQube Scan') {
+            steps {
+                    // Starts the SonarQube Scan
+                    sh "c:/sonar-scanner/bin/sonar-scanner.bat"
+            }
+        }
+        stage('Clean up') {
+            steps {
+                echo "Cleaning up..."
+            }    
+        }
+    }
+}
