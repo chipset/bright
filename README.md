@@ -15,5 +15,5 @@ python bright-side.py WEBSALC SIMPLTEST FINANCE * -a
 ## Download upstream components
 To be documented
 
-#Jenkins Folder 
+# Jenkins Folder 
 Contains pipeline script examples for calling bright-side.py and CA Brightside
