@@ -5,6 +5,7 @@ The scripts are written using Python 2.5+.
 ## Assumptions
 You must create a profile for your Endevor instance and it must be active as the default profile.
 
+## Usage
 Usage:
 python bright-side.py "ENDEVOR INSTANCE" "ENDEVOR ENVIRONMENT" "ENDDEVOR SYSTEM" "ENDEVOR SUBSYSTEM" (OPTIONS)
 
