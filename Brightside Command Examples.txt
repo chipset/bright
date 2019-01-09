@@ -1,0 +1,60 @@
+# Create Endevor Profile
+bright profiles create endevor Name --hostname ## --port 3480 --username ## --password ###
+
+# Overwite profile updates
+bright profiles create endevor Name --hostname ### --port 47402 --username ### --password ###  --ow
+
+# Set default Endevor profile
+bright profiles set endevor CA32
+
+# Endevor List Packages with Profile Specifier
+bright endevor list packages -i WEBSALC --endevor-p CA32
+
+#Filtered Package List
+bright endevor list packages TM* -i WEBSALC
+
+#Reset Package
+bright endevor reset  pkg TMUS167 -i WEBSALC
+
+#List Elements
+bright endevor list elements --environment SMPLTEST --system FINANCE --subsystem ACCTREC -i WEBSALC
+
+#List Elements by type
+bright endevor list elements --environment SMPLTEST --system FINANCE --subsystem ACCTREC -i WEBSALC --type COBOL
+
+# Delete profiles
+bright profiles delete endevor ca32
+
+# List profiles
+bright profiles list endevor
+
+# Retrieve Elements
+bright endevor ret element  MCQTH01 --environment SMPLTEST --system FINANCE --subsystem ACCTREC --sn 1 --type COBOL --ccid temp --comment hello --tf MCQTH01.COBOL1 -i WEBSALC
+
+# Add Elements
+bright endevor add element  MCQTH01 --environment SMPLTEST --system FINANCE --subsystem ACCTREC --sn 1 --type COBOL --ccid temp --comment hello --ff MCQTH01.COBOL1 -i WEBSALC
+
+# Update Elements
+bright endevor update element  MCQTH01 --environment SMPLTEST --system FINANCE --subsystem ACCTREC --sn 1 --type COBOL --ccid temp --comment hello --ff MCQTH01.COBOL1 -i WEBSALC
+
+
+
+ZOSMF
+
+#Create Dataset
+bright files create classic "MCQTH01.CA32.DELETEME"
+
+# Delete Dataset
+bright files delete ds "MCQTH01.CA32.DELETEME"
+bright files delete ds "MCQTH01.CA32.DELETEME" -f
+
+# Create PDS 
+bright files create pds  "MCQTH01.CA32.PDS"
+
+# File PDS
+bright files ul dtp tom MCQTH01.CA32.PDS
+
+# Download pds
+bright files download am MCQTH01.CA32.PDS -d mf
+
+
