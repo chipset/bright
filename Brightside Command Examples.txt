@@ -58,3 +58,15 @@ bright files ul dtp tom MCQTH01.CA32.PDS
 bright files download am MCQTH01.CA32.PDS -d mf
 
 
+# Submit Hello World
+bright jobs submit ds mcqth01.jcl.ex(HW)
+
+# View All Jobs
+bright jobs ls js
+
+# View Job Status
+bright jobs ls sfbj JOB04071
+
+# View Job Output 
+bright jobs view sfbi JOB04071 103
+
