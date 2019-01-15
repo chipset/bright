@@ -18,5 +18,8 @@ python bright-side.py WEBSALC SIMPLTEST FINANCE * -a
 ## Download upstream components
 To be documented
 
+## Job Management
+This is a simple script to add JCL to a PDS and then call the JCL in the PDS member.  It will execute the example Hello World and return the output.
+
 # Jenkins Folder 
 Contains pipeline script examples for calling bright-side.py and CA Brightside
