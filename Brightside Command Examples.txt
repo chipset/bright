@@ -76,13 +76,10 @@ bright jobs view sfbi JOB04071 103
 ###  Copy Dataset from one LPAR to Another
 ###
 
-# Action 1 - Download the Dataset
-# Action 2 - Create the Dataset on target system
-# Action 3 - Upload the Dataset
-
-## Create
+## Create PDS, if needed.
 bright files create pds MCQTH01.NAMES --zosmf-profile ca32
-## Upload
-bright files upload dtp data\names MCQTH01.NAMES --zosmf-profile ca32
 ## Download
 bright files dl am mcqth01.names -d data\names --zosmf-profile ca32
+## Upload
+bright files upload dtp data\names MCQTH01.NAMES --zosmf-profile ca32
+

@@ -20,8 +20,8 @@ class jobsOps:
         success = False
         try:
             output = subprocess.check_output(cmdLine.split(), stderr=subprocess.STDOUT)
-        except subprocess.CalledProcessError as e:
-            output = e.output
+        except subprocess.CalledProcessError as e:  # This crap is ugly.  It always exits with return code 255, raising an exception
+            output = e.output                       # So we accept the failure and check the output below to see if we can find JOBID.
  
         lines = output.split('\n')
         for i in lines:
