@@ -1,8 +1,0 @@
-bright profiles create zosmf ca32 --host ca32 --port 1443 --user MCQTH01 --pass Target1 --reject-unauthorized false
-
-## Create
-bright files create pds MCQTH01.NAMES --zosmf-profile ca32
-## Upload
-bright files upload dtp data\names MCQTH01.NAMES --zosmf-profile ca32
-## Download
-bright files dl am mcqth01.names -d data\names --zosmf-profile ca32
