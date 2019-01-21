@@ -1,5 +1,5 @@
-@echo off
-set pds = %1
+REM @echo off
+set pds=%1
 set fromprofile=%2
 set toprofile=%3
 set tempdir=%4
